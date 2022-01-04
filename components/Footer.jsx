@@ -5,20 +5,20 @@ const Footer = () => {
   return (
     <footer className='bg-black text-white py-14'>
       <div className='w-5/6 mx-auto space-y-5'>
-        <main className='flex items-center justify-between w-5/6'>
+        <main className='flex items-center justify-between w-5/6 flex-col md:flex-row mx-auto md:mx-0'>
           <Link href={'/'} passHref>
             <h1 className='font-mono font-extrabold text-2xl cursor-pointer'>
               Astrument
             </h1>
           </Link>
-          <span className='flex justify-center gap-x-10 font-medium text-xs font-sans'>
+          <span className='flex justify-center gap-x-10 font-medium text-sm md:text-xs font-sans flex-col md:flex-row'>
             <Link href={'/'}>HOME</Link>
             <Link href={'/category/guitars'}>GUITARS</Link>
             <Link href={'/category/pianos'}>PIANOS</Link>
             <Link href={'/category/drums'}>DRUMS</Link>
           </span>
         </main>
-        <section className='flex justify-between'>
+        <section className='flex justify-between items-center gap-y-6 flex-col md:flex-row'>
           <span className='w-3/5 space-y-5'>
             <p className='opacity-70 text-sm'>
               As a company made up of musicians and music lovers, we&apos;re
@@ -34,7 +34,7 @@ const Footer = () => {
               © Copyright 2021. All Rights Reserved
             </p>
           </span>
-          <span className='flex self-end gap-x-6'>
+          <span className='flex md:self-end gap-x-6'>
             <svg
               className='hover:scale-125 cursor-pointer'
               xmlns='http://www.w3.org/2000/svg'

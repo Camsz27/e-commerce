@@ -10,7 +10,7 @@ const Navbar = () => {
             Astrument
           </h1>
         </Link>
-        <nav className='flex justify-center gap-x-10 font-medium text-sm font-sans'>
+        <nav className='flex justify-center gap-x-10 font-medium text-sm font-sans flex-col md:flex-row'>
           <Link href={'/'}>HOME</Link>
           <Link href={'/category/guitars'}>GUITARS</Link>
           <Link href={'/category/pianos'}>PIANOS</Link>
