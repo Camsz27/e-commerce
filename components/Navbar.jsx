@@ -12,7 +12,6 @@ const Navbar = () => {
   }, [router.asPath]);
 
   const displayMenu = () => {
-    console.log('display menu');
     setDisplay((prev) => !prev);
   };
 
@@ -26,7 +25,11 @@ const Navbar = () => {
         </Link>
         <nav className='hidden md:flex justify-center gap-x-10 font-medium text-sm font-sans'>
           <Link href={'/'} passHref>
-            <button className={`${active === '/' ? 'text-amber-600' : ''}`}>
+            <button
+              className={`${
+                active === '/' ? 'text-amber-600' : ''
+              } hover:text-amber-600`}
+            >
               HOME
             </button>
           </Link>
@@ -34,7 +37,7 @@ const Navbar = () => {
             <button
               className={`${
                 active === '/category/guitars' ? 'text-amber-600' : ''
-              }`}
+              } hover:text-amber-600`}
             >
               GUITARS
             </button>
@@ -43,7 +46,7 @@ const Navbar = () => {
             <button
               className={`${
                 active === '/category/pianos' ? 'text-amber-600' : ''
-              }`}
+              } hover:text-amber-600`}
             >
               PIANOS
             </button>
@@ -52,7 +55,7 @@ const Navbar = () => {
             <button
               className={`${
                 active === '/category/drums' ? 'text-amber-600' : ''
-              }`}
+              } hover:text-amber-600`}
             >
               DRUMS
             </button>
