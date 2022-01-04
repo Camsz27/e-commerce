@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 export default function Home() {
   return (
-    <div>
+    <div className='bg-black text-white h-96'>
       <Head>
         <title>Astrument</title>
         <link rel='icon' href='/favicon.ico' />
