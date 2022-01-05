@@ -1,11 +1,12 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import BottomMessage from '../components/BottomMessage';
 import Categories from '../components/Categories';
 import FeaturedProducts from '../components/FeaturedProducts';
 import MainProduct from '../components/MainProduct';
+import dbConnect from '../database/dbConnect';
+import Product from '../models/Product';
 
-export default function Home() {
+export default function Home({ products }) {
   return (
     <div>
       <Head>
@@ -14,8 +15,19 @@ export default function Home() {
       </Head>
       <MainProduct />
       <Categories />
-      <FeaturedProducts />
+      <FeaturedProducts products={products} />
       <BottomMessage />
     </div>
   );
+}
+
+export async function getStaticProps() {
+  await dbConnect();
+  const result = await Product.find({ featured: true });
+  const products = result.map((doc) => {
+    const product = doc.toObject();
+    product._id = product._id.toString();
+    return product;
+  });
+  return { props: { products } };
 }
