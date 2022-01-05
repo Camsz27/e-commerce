@@ -19,7 +19,7 @@ const Footer = () => {
           </span>
         </main>
         <section className='flex justify-between items-center gap-y-6 flex-col md:flex-row'>
-          <span className='w-4/5 md:w-3/5 space-y-5'>
+          <span className='w-4/5 md:w-3/5 space-y-5 text-center'>
             <p className='opacity-70 text-sm'>
               As a company made up of musicians and music lovers, we&apos;re
               driven by our shared belief that music is the greatest unifying
