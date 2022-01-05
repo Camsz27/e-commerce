@@ -3,11 +3,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const CategoryCard = ({ instrument }) => {
+  let photoPath = '';
+  switch (instrument) {
+    case 'guitars':
+      photoPath = '/guitar2/photo3.jpg';
+      break;
+    case 'pianos':
+      photoPath = '/piano2/photo1.webp';
+      break;
+    case 'drums':
+      photoPath = '/drum1/photo1.webp';
+      break;
+    default:
+      break;
+  }
   return (
     <Link href={`/category/${instrument}`} passHref>
       <div className='bg-neutral-100 md:w-1/3 flex flex-col items-center cursor-pointer rounded-xl py-3 h-60 group hover:scale-105 hover:border border-gray-400'>
         <Image
-          src={'/guitar2/photo3.jpg'}
+          src={photoPath}
           width={200}
           height={300}
           alt='guitar'
