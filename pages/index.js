@@ -21,7 +21,7 @@ export default function Home({ products }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
   await dbConnect();
   const result = await Product.find({ featured: true });
   const products = result.map((doc) => {
@@ -30,4 +30,4 @@ export async function getStaticProps() {
     return product;
   });
   return { props: { products } };
-}
+};
