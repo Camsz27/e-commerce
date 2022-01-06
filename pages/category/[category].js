@@ -8,7 +8,6 @@ import Product from '../../models/Product';
 
 export default function Category({ products }) {
   const router = useRouter();
-  console.log(products);
   return (
     <div>
       <Head>
@@ -31,7 +30,7 @@ export default function Category({ products }) {
 
 export const getStaticProps = async (context) => {
   const category = context.params.category.slice(0, -1);
-  await dbConnect;
+  await dbConnect();
   const request = await Product.find({ category });
   const products = request.map((doc) => {
     const product = doc.toObject();
