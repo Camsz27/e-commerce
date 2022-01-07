@@ -4,15 +4,16 @@ import Categories from '../../components/Categories';
 import SuggestionPanel from '../../components/SuggestionPanel';
 import dbConnect from '../../database/dbConnect';
 import Product from '../../models/Product';
+import ProductInformation from '../../components/ProductInformation';
 
 export default function ProductDetail({ product, suggestions }) {
   return (
-    <div>
+    <div className='space-y-16 mt-20'>
       <Head>
         <title>Astrument</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <h1>Product Page</h1>
+      <ProductInformation product={product} />
       <SuggestionPanel suggestions={suggestions} />
       <Categories />
       <BottomMessage />
