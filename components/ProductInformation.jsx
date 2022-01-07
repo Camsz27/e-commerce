@@ -1,10 +1,31 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ProductInformation = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+  const category = product.category + 's';
   return (
     <div className='space-y-20'>
+      <Link href={`/category/${category}`} passHref>
+        <div className='w-5/6 mx-auto opacity-60 flex space-x-5 cursor-pointer'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='h-6 w-6'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M10 19l-7-7m0 0l7-7m-7 7h18'
+            />
+          </svg>
+          <h3>More {category}</h3>
+        </div>
+      </Link>
       <div className='flex flex-col md:flex-row items-center w-2/3 mx-auto justify-between gap-y-6'>
         <span className='md:w-5/12 w- bg-neutral-100'>
           <Image

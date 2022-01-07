@@ -43,9 +43,15 @@ export const getStaticProps = async (context) => {
   return { props: { product, suggestions } };
 };
 
-export const getStaticPaths = () => {
+export const getStaticPaths = async () => {
+  await dbConnect();
+  const products = await Product.find();
+  let productPaths = [];
+  products.map((product) =>
+    productPaths.push({ params: { productId: product._id.toString() } })
+  );
   return {
-    paths: [{ params: { productId: '61d5ba0ad8d947be405cc338' } }],
-    fallback: true,
+    paths: productPaths,
+    fallback: false,
   };
 };
