@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import CartContext from '../context/CartContext';
 
 const ProductInformation = ({ product, modalHandler }) => {
   const [quantity, setQuantity] = useState(1);
+  const cartCtx = useContext(CartContext);
   const category = product.category + 's';
 
   const addToCartHandler = () => {
     modalHandler(true);
+    const item = { product, quantity };
+    cartCtx.add(item);
   };
 
   return (

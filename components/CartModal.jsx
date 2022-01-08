@@ -1,11 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import Link from 'next/link';
 import CartItem from './CartItem';
+import CartContext from '../context/CartContext';
 
 const CartModal = ({ modalHandler }) => {
   const [isBrowser, setIsBrowser] = useState(false);
   const modalWrapper = useRef();
+  const cartCtx = useContext(CartContext);
 
   useEffect(() => {
     setIsBrowser(true);
@@ -15,6 +17,10 @@ const CartModal = ({ modalHandler }) => {
     if (!modalWrapper.current.contains(e.target)) {
       modalHandler(false);
     }
+  };
+
+  const removeAllHandler = () => {
+    cartCtx.clear();
   };
 
   const modalContent = (
@@ -27,16 +33,29 @@ const CartModal = ({ modalHandler }) => {
         ref={modalWrapper}
       >
         <span className='flex justify-between'>
-          <h1>Cart (1)</h1>
-          <button className='hover:underline opacity-60'>Remove All</button>
+          <h1 className='font-semibold text-xl'>
+            Cart ({cartCtx.items.length})
+          </h1>
+          <button
+            className='hover:underline opacity-60'
+            onClick={removeAllHandler}
+          >
+            Remove All
+          </button>
         </span>
         <span className='grid grid-cols-9 gap-x-2 gap-y-5 max-h-60 overflow-y-auto'>
-          <CartItem />
-          <CartItem />
+          {cartCtx.items.map((item, index) => (
+            <CartItem key={index} product={item} />
+          ))}
         </span>
         <span className='flex justify-between'>
           <h3 className='opacity-60'>Total</h3>
-          <h2 className='font-medium'>$5,432.00</h2>
+          <h2 className='font-medium'>
+            {new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            }).format(cartCtx.total())}
+          </h2>
         </span>
         <span className='flex justify-center'>
           <Link href={'/checkout'} passHref>

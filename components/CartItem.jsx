@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import Image from 'next/image';
+import CartContext from '../context/CartContext';
 
-const CartItem = () => {
+const CartItem = ({ product }) => {
+  const cartCtx = useContext(CartContext);
+  const [quantity, setQuantity] = useState(product.quantity);
+
+  const decreaseHandler = () => {
+    if (quantity === 1) {
+      cartCtx.deleteItem(product);
+    } else {
+      setQuantity((prev) => prev - 1);
+      cartCtx.decreaseQuantity(product, 1);
+    }
+  };
+
+  const increaseHandler = () => {
+    setQuantity((prev) => prev + 1);
+    cartCtx.increaseQuantity(product, 1);
+  };
+
   return (
     <>
       <span className='bg-neutral-100 col-span-2'>
         <Image
-          src={'/guitar1/photo1.webp'}
+          src={product.product.photos[0]}
           width={500}
           height={500}
           alt='guitar'
@@ -14,14 +32,19 @@ const CartItem = () => {
         />
       </span>
       <span className='col-span-4 self-center space-y-2'>
-        <h3 className='font-semibold truncate'>
-          PRS Custom 24 Carved Figured Maple Top with Gen 3 Tremolo Solid Body
-          Electric Guitar Gold Burst
-        </h3>
-        <h5>$5,343.00</h5>
+        <h3 className='font-semibold truncate'>{product.product.name}</h3>
+        <h5>
+          {new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          }).format(product.product.price)}
+        </h5>
       </span>
-      <span className='col-span-3 flex items-center gap-x-3 justify-self-end'>
-        <button className='border-2 border-gray-400 rounded-xl p-1.5 hover:scale-110'>
+      <span className='col-span-3 flex items-center gap-x-2 justify-self-end overflow-x-hidden'>
+        <button
+          className='border-2 border-gray-400 rounded-xl p-1.5 hover:scale-110'
+          onClick={decreaseHandler}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-3 w-3 text-gray-400'
@@ -37,8 +60,11 @@ const CartItem = () => {
             />
           </svg>
         </button>
-        <h4>5</h4>
-        <button className='border-2 border-gray-400 rounded-xl p-1.5 hover:scale-110'>
+        <h4>{quantity}</h4>
+        <button
+          className='border-2 border-gray-400 rounded-xl p-1.5 hover:scale-110'
+          onClick={increaseHandler}
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-3 w-3 stroke-gray-400'
