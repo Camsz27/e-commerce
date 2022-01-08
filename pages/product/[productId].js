@@ -5,15 +5,19 @@ import SuggestionPanel from '../../components/SuggestionPanel';
 import dbConnect from '../../database/dbConnect';
 import Product from '../../models/Product';
 import ProductInformation from '../../components/ProductInformation';
+import CartModal from '../../components/CartModal';
+import { useState } from 'react';
 
 export default function ProductDetail({ product, suggestions }) {
+  const [displayModal, setDisplayModal] = useState(false);
   return (
     <div className='space-y-16 mt-20'>
       <Head>
         <title>Astrument</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <ProductInformation product={product} />
+      {displayModal && <CartModal modalHandler={setDisplayModal} />}
+      <ProductInformation product={product} modalHandler={setDisplayModal} />
       <SuggestionPanel suggestions={suggestions} />
       <Categories />
       <BottomMessage />

@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const ProductInformation = ({ product }) => {
+const ProductInformation = ({ product, modalHandler }) => {
   const [quantity, setQuantity] = useState(1);
   const category = product.category + 's';
+
+  const addToCartHandler = () => {
+    modalHandler(true);
+  };
+
   return (
     <div className='space-y-20'>
       <Link href={`/category/${category}`} passHref>
@@ -89,7 +94,10 @@ const ProductInformation = ({ product }) => {
                 </svg>
               </button>
             </span>
-            <button className='md:ml-10 px-5 py-2 text-sm lg:text-base bg-amber-600 text-white hover:opacity-70'>
+            <button
+              className='md:ml-10 px-5 py-2 text-sm lg:text-base bg-amber-600 text-white hover:opacity-70'
+              onClick={addToCartHandler}
+            >
               Add to cart
             </button>
           </span>

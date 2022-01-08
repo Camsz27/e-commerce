@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const Navbar = () => {
+const Navbar = ({ modalHandler }) => {
   const router = useRouter();
   const [active, setActive] = useState(router.asPath);
   const [display, setDisplay] = useState(false);
@@ -63,10 +63,11 @@ const Navbar = () => {
         </nav>
         <svg
           xmlns='http://www.w3.org/2000/svg'
-          className='h-6 w-6 hidden md:block'
+          className='h-6 w-6 hidden md:block cursor-pointer'
           fill='none'
           viewBox='0 0 24 24'
           stroke='currentColor'
+          onClick={() => modalHandler(true)}
         >
           <path
             strokeLinecap='round'
@@ -128,10 +129,11 @@ const Navbar = () => {
           </Link>
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            className='h-6 w-6 mx-auto'
+            className='h-6 w-6 mx-auto cursor-pointer'
             fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
+            onClick={() => modalHandler(true)}
           >
             <path
               strokeLinecap='round'
