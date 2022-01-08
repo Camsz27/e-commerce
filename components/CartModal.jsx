@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import Link from 'next/link';
 import CartItem from './CartItem';
 import CartContext from '../context/CartContext';
+import { useRouter } from 'next/router';
 
 const CartModal = ({ modalHandler }) => {
   const [isBrowser, setIsBrowser] = useState(false);
   const modalWrapper = useRef();
   const cartCtx = useContext(CartContext);
+  const router = useRouter();
 
   useEffect(() => {
     setIsBrowser(true);
@@ -21,6 +23,11 @@ const CartModal = ({ modalHandler }) => {
 
   const removeAllHandler = () => {
     cartCtx.clear();
+  };
+
+  const checkoutButtonHandler = () => {
+    router.push('/checkout');
+    modalHandler(false);
   };
 
   const modalContent = (
@@ -58,11 +65,14 @@ const CartModal = ({ modalHandler }) => {
           </h2>
         </span>
         <span className='flex justify-center'>
-          <Link href={'/checkout'} passHref>
-            <button className='bg-amber-600 text-white hover:opacity-80 w-5/6 py-2 text-sm font-medium'>
-              CHECKOUT
-            </button>
-          </Link>
+          {/* <Link href={'/checkout'} passHref> */}
+          <button
+            className='bg-amber-600 text-white hover:opacity-80 w-5/6 py-2 text-sm font-medium'
+            onClick={checkoutButtonHandler}
+          >
+            CHECKOUT
+          </button>
+          {/* </Link> */}
         </span>
       </main>
     </div>
