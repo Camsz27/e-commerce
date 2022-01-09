@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
-import Link from 'next/link';
 import CartItem from './CartItem';
 import CartContext from '../context/CartContext';
 import { useRouter } from 'next/router';
@@ -32,7 +31,7 @@ const CartModal = ({ modalHandler }) => {
 
   const modalContent = (
     <div
-      className='absolute inset-0 z-10 bg-opacity-30 bg-black flex items-center justify-center h-full'
+      className='fixed inset-0 z-10 bg-opacity-30 bg-black flex items-center justify-center min-h-screen'
       onClick={outsideClickHandler}
     >
       <main
@@ -65,14 +64,12 @@ const CartModal = ({ modalHandler }) => {
           </h2>
         </span>
         <span className='flex justify-center'>
-          {/* <Link href={'/checkout'} passHref> */}
           <button
             className='bg-amber-600 text-white hover:opacity-80 w-5/6 py-2 text-sm font-medium'
             onClick={checkoutButtonHandler}
           >
             CHECKOUT
           </button>
-          {/* </Link> */}
         </span>
       </main>
     </div>

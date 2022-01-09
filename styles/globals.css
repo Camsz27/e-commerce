@@ -18,3 +18,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+.location {
+  @apply border border-gray-400 rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600 focus:invalid:ring-pink-600 focus:invalid:border-pink-600;
+}
