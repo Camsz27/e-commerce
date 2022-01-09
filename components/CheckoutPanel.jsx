@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import {
-  CountryDropdown,
-  RegionDropdown,
-  CountryRegionData,
-} from 'react-country-region-selector';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 const CheckoutPanel = () => {
   const [country, setCountry] = useState('');
@@ -18,11 +14,23 @@ const CheckoutPanel = () => {
       <div className='w-11/12 mx-auto flex flex-col md:flex-row flex-wrap gap-x-10 gap-y-4'>
         <span className='flex flex-col gap-y-2 md:w-2/5 w-full'>
           <label htmlFor='name'>Name</label>
-          <input type='text' name='name' id='name' required />
+          <input
+            type='text'
+            name='name'
+            id='name'
+            required
+            placeholder='John Smith'
+          />
         </span>
         <span className='flex flex-col gap-y-2 md:w-2/5 w-full'>
           <label htmlFor='email'>Email Address</label>
-          <input type='email' name='email' id='email' required />
+          <input
+            type='email'
+            name='email'
+            id='email'
+            required
+            placeholder='test@email.com'
+          />
         </span>
         <span className='flex flex-col gap-y-2 md:w-2/5 w-full'>
           <label htmlFor='phone'>Phone Number</label>
