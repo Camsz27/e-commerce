@@ -1,13 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import ReactDOM from 'react-dom';
+import CartContext from '../context/CartContext';
 
 const OrderModal = ({ result }) => {
   const [isBrowser, setIsBrowser] = useState(false);
   const [modalHandler, setModalHandler] = useState(true);
   const modalWrapper = useRef();
+  const cartCtx = useContext(CartContext);
 
   useEffect(() => {
     setIsBrowser(true);
+    if (result === 'success') {
+      cartCtx.clear();
+    }
   }, []);
 
   const outsideClickHandler = (e) => {

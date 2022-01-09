@@ -9,8 +9,6 @@ const Layout = ({ children }) => {
   const [displayModal, setDisplayModal] = useState(false);
   const router = useRouter();
 
-  console.log(router.query);
-
   return (
     <div className='min-h-screen flex flex-col justify-between'>
       <Navbar modalHandler={setDisplayModal} />

@@ -7,7 +7,6 @@ const CheckoutPanel = () => {
   return (
     <div className='bg-white w-5/6 mx-auto md:w-2/3 rounded-xl px-4 md:px-7 py-5 space-y-6'>
       <h2 className='font-bold text-xl md:text-2xl uppercase'>Checkout</h2>
-
       <h3 className='uppercase text-amber-600 font-medium'>
         Customer Information
       </h3>
@@ -69,22 +68,26 @@ const CheckoutPanel = () => {
             />
           </span>
           <span className='flex flex-col gap-y-2 md:w-2/5 w-full'>
-            <label htmlFor='phone'>Country</label>
+            <label htmlFor='country'>Country</label>
             <CountryDropdown
               value={country}
               onChange={(val) => setCountry(val)}
               required
               classes='location'
+              id='country'
+              name='country'
             />
           </span>
           <span className='flex flex-col gap-y-2 md:w-2/5 w-full'>
-            <label htmlFor='phone'>State</label>
+            <label htmlFor='region'>State</label>
             <RegionDropdown
               country={country}
               value={region}
               onChange={(val) => setRegion(val)}
               required
               classes='location'
+              id='region'
+              name='region'
             />
           </span>
         </div>

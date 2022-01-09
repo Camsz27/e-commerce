@@ -4,6 +4,7 @@ import CartContext from '../context/CartContext';
 
 const SummaryPanel = () => {
   const cartCtx = useContext(CartContext);
+  console.log(cartCtx.items.length);
 
   return (
     <div className='bg-white w-5/6 mx-auto md:w-1/3 rounded-xl px-4 py-5 space-y-6'>
@@ -40,10 +41,17 @@ const SummaryPanel = () => {
           }).format(cartCtx.total() + 50)}
         </h2>
       </span>
+      <input
+        type='hidden'
+        name='total'
+        id='total'
+        value={(cartCtx.total() + 50).toFixed(2)}
+      />
       <span className='w-full flex justify-center'>
         <button
-          className='bg-amber-600 text-white hover:opacity-80 px-5 py-2 font-medium'
+          className='bg-amber-600 text-white hover:opacity-80 px-5 py-2 font-medium disabled:bg-opacity-50'
           type='submit'
+          disabled={cartCtx.items.length === 0}
         >
           Continue & pay
         </button>

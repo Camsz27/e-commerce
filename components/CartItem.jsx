@@ -44,6 +44,7 @@ const CartItem = ({ product }) => {
         <button
           className='border-2 border-gray-400 rounded-xl p-1.5 hover:scale-110'
           onClick={decreaseHandler}
+          type='button'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -64,6 +65,7 @@ const CartItem = ({ product }) => {
         <button
           className='border-2 border-gray-400 rounded-xl p-1.5 hover:scale-110'
           onClick={increaseHandler}
+          type='button'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
